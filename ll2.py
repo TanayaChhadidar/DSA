@@ -48,13 +48,52 @@ class LinkedList:
                 return
 
             curr = curr.next
+
+    def occurance(self,data):
+        curr = self.head
+        count = 0
+        while curr != None:
+            if curr.data == data:
+                count += 1
+            curr = curr.next
+        return count
+    
+    def swap(self):
+        if self.head == None or self.head.next == None:
+            return
+
+        first = self.head
+        last = self.head
+
+        while last.next:
+            last = last.next
+
+        second = first.next
+        second_last = last.prev
+
+        if first.next == last:  # Only two nodes
+            first.next = None
+            first.prev = last
+            last.next = first
+            last.prev = None
+            self.head = last
+        else:
+            last.prev = None
+            last.next = second
+            second.prev = last
+
+            second_last.next = first
+            first.prev = second_last
+            first.next = None
+
+            self.head = last
     def print(self):
         temp = self.head
         print("List elements: ")
         while temp:
             print(temp.data, end=" ")
             temp = temp.next
-            
+                
 list1 = LinkedList()
 list1.append(Node(10))
 list1.insert(Node(5), 0)
@@ -64,6 +103,8 @@ list1.append(Node(30))
 list1.insert(Node(25), 4)
 list1.delete(25)
 list1.delete(14)
+list1.print()
+print("\nOccurance of 10:" ,list1.occurance(10))
 
-
+list1.swap()
 list1.print()
