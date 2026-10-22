@@ -17,3 +17,10 @@ class Stack:
         while temp:
             print(temp.data)
             temp = temp.next
+st=Stack()
+st.push(Node(10))
+st.push(Node(20))
+st.push(Node(30))
+st.push(Node(40))
+st.push(Node(50))
+st.print()
