@@ -1,0 +1,87 @@
+
+# Linear Queue Implementation
+
+queue = []
+queue2 = []
+
+def enqueue():
+    element = int(input("Enter element: "))
+    queue.append(element)
+    print("Element inserted successfully")
+
+def dequeue():
+    if len(queue) == 0:
+        print("Queue is empty")
+    else:
+        print("Deleted element:", queue.pop(0))
+
+def display():
+    if len(queue) == 0:
+        print("Queue is empty")
+    else:
+        print("Queue elements:", queue)
+
+def reverse_queue():
+    stack = []
+
+    while len(queue) > 0:
+        stack.append(queue.pop(0))
+
+    while len(stack) > 0:
+        queue.append(stack.pop())
+
+    print("Reversed queue:", queue)
+
+def merge_queue():
+    print("Enter elements for second queue")
+    n = int(input("How many elements? "))
+
+    for i in range(n):
+        element = int(input("Enter element: "))
+        queue2.append(element)
+
+    merged = queue + queue2
+
+    print("First queue:", queue)
+    print("Second queue:", queue2)
+    print("Merged queue:", merged)
+
+def identical_queue():
+    q1 = list(map(int, input("Enter first queue elements separated by space: ").split()))
+    q2 = list(map(int, input("Enter second queue elements separated by space: ").split()))
+
+    if q1 == q2:
+        print("Both queues are identical")
+    else:
+        print("Both queues are not identical")
+
+
+while True:
+    print("\n--- QUEUE MENU ---")
+    print("1. Enqueue")
+    print("2. Dequeue")
+    print("3. Display")
+    print("4. Reverse Queue using Stack")
+    print("5. Merge two Queues")
+    print("6. Check Identical Queues")
+    print("7. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        enqueue()
+    elif choice == 2:
+        dequeue()
+    elif choice == 3:
+        display()
+    elif choice == 4:
+        reverse_queue()
+    elif choice == 5:
+        merge_queue()
+    elif choice == 6:
+        identical_queue()
+    elif choice == 7:
+        print("Program terminated")
+        break
+    else:
+        print("Invalid choice")
