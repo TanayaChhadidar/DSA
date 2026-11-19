@@ -1,46 +1,57 @@
 class Node:
-    def __init__(self,value):
+    def __init__(self, value):
         self.left = None
-        self.value = value
         self.right = None
+        self.value = value
+
+
 class BST:
     def __init__(self):
         self.root = None
-        
-    def insert(self,value):
-        new_node = Node(value)
+
+    def insert(self, newnode):
         if self.root is None:
-            self.root = new_node
-            return            
+            self.root = newnode
+            return
+
         else:
             temp = self.root
+
             while True:
-                if new_node.value < temp.value:
-                    if temp.left is None:
-                        temp.left = new_node
-                        return
-                    else:
-                        temp = temp.left
-                
-                else:
+                if newnode.value > temp.value:
                     if temp.right is None:
-                        temp.right = new_node
+                        temp.right = newnode
                         return
                     else:
                         temp = temp.right
-    def inorder(self):
-        self._inorder(self.root)
 
-    def _inorder(self, node):
-        if node is None:
-            return
+                elif newnode.value < temp.value:
+                    if temp.left is None:
+                        temp.left = newnode
+                        return
+                    else:
+                        temp = temp.left
 
-        self._inorder(node.left)
-        print(node.value, end=" ")
-        self._inorder(node.right)
+                else:
+                    print("Duplicate value not allowed")
+                    return
 
-BinarySearchTree = BST()
-BinarySearchTree.insert(10)
-BinarySearchTree.insert(5)
-BinarySearchTree.insert(20)
-BinarySearchTree.inorder()
+    # inorder traversal
+    def inorder(self, root):
+        if root is not None:
+            self.inorder(root.left)
+            print(root.value, end=" ")
+            self.inorder(root.right)
+
+
+# main program
+biny = BST()
+
+biny.insert(Node(10))
+biny.insert(Node(20))
+biny.insert(Node(30))
+biny.insert(Node(5))
+biny.insert(Node(15))
+
+print("Inorder Traversal:")
+biny.inorder(biny.root)
